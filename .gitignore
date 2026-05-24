@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Arquivos de teste / dados locais
+*.xlsx
+*.csv
+
+# Python
+*.py
+__pycache__/
+*.pyc
