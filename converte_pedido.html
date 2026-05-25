@@ -132,8 +132,8 @@ function recalc(){
 
 function buildCSV(){
   var out='CNPJ:;'+fmtCNPJ(cnpjGlobal)+';;Data:;'+today()+';\n';
-  out+='Código;Produto;Quantidade;Multiplo;Embalagem;Vl.Unit.;Total\n';
-  tableRows.forEach(function(r){ var cod=String(r.CODIGO).padStart(8,'0'); out+=cod+';'+r.PRODUTO+';'+r.QUANTIDADE+';'+r.MULTIPLO+';'+r.EMBALAGEM+';'+parseFloat(r.VALUNITARIO||0).toFixed(2).replace('.',',')+';'+parseFloat(r.VALOR_TOTAL).toFixed(2).replace('.',',')+'\n'; });
+  out+='Código;Produto;Quantidade;Multiplo;Embalagem;Total\n';
+  tableRows.forEach(function(r){ var cod=String(r.CODIGO).padStart(8,'0'); out+=cod+';'+r.PRODUTO+';'+r.QUANTIDADE+';'+r.MULTIPLO+';'+r.EMBALAGEM+';'+parseFloat(r.VALOR_TOTAL).toFixed(2).replace('.',',')+'\n'; });
   return out;
 }
 
