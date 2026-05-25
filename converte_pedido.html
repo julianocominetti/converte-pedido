@@ -63,7 +63,7 @@ input.edt.ch{border-color:#f59e0b;background:#fef3c7}
   <div class="card">
     <h3>Selecione o arquivo da planilha</h3>
     <p class="sub">Após escolher o arquivo, clique em <b>Converter para CSV</b>.</p>
-    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="document.getElementById('clearBtn').style.display=this.files.length?'block':'none'">
     <button class="btn btn-green" id="convertBtn" onclick="doConvert()">Converter para CSV</button>
     <button class="btn btn-red" id="clearBtn" onclick="doReset()" style="display:none;margin-top:.5rem">&#10005; Limpar</button>
     <div id="statusBar"></div>
