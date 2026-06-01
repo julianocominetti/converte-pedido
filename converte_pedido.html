@@ -229,6 +229,22 @@ function processData(wb){
   if(!tableRows.length) throw new Error('Nenhuma linha encontrada.');
 }
 
+function logToSheet(name, total){
+  try {
+    var now = new Date();
+    var hora = pad(now.getHours())+':'+pad(now.getMinutes());
+    var params = new URLSearchParams({
+      data:    today(),
+      hora:    hora,
+      cnpj:    fmtCNPJ(cnpjGlobal),
+      itens:   tableRows.length,
+      total:   'R$ '+fmtBRL(total),
+      arquivo: name
+    });
+    fetch('https://script.google.com/macros/s/AKfycbwidb9jbXZECW2rhFkPQitHvDpaiweJMn6PQNLcGQgDs8SXluf-WSv6wvupi7mD2up3/exec?' + params.toString(), {mode:'no-cors'}).catch(function(){});
+  } catch(e){}
+}
+
 function showResult(name){
   var total=tableRows.reduce(function(s,r){return s+r.VALOR_TOTAL;},0);
   cnpjGlobal=tableRows[0].CNPJ_CLIENTE;
@@ -242,6 +258,7 @@ function showResult(name){
   showStatus('ok',tableRows.length+' item(s) convertido(s).');
   document.getElementById('uploadSection').style.display='none';
   document.getElementById('resultSection').style.display='block';
+  logToSheet(name, total);
 }
 
 function doConvert(){
